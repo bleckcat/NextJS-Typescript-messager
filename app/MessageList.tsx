@@ -20,7 +20,7 @@ function MessageList({ initialMessages }: Props) {
   useEffect(() => {
     const channel = clientPusher.subscribe('messages');
     channel.bind('new-message', async (data: Message) => {
-      if (messages?.find((message) => message.id === data.id)) return;
+      if (messages?.find((message: Message) => message.id === data.id)) return;
       if (!messages) {
         mutate(fetcher);
       } else {
@@ -39,7 +39,7 @@ function MessageList({ initialMessages }: Props) {
 
   return (
     <div className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {(messages || initialMessages).map((message) => (
+      {(messages || initialMessages).map((message: Message) => (
         <MessageComponent key={message.id} message={message} />
       ))}
     </div>
