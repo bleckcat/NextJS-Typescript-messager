@@ -1,10 +1,10 @@
 function Loading() {
   return (
     <div className="text-center pt-8">
-      <p className="text-blue-400 pb-5 animate-pulse">Loading Messages</p>
+      <p className="text-orange-400 pb-5 animate-pulse">Loading Messages</p>
       <div role="status">
         <svg
-          className="inline mr-2 w-12 h-12 text-gray-200 animate-spin fill-blue-600"
+          className="inline mr-2 w-12 h-12 text-gray-200 animate-spin fill-orange-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

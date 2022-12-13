@@ -29,9 +29,7 @@ export default async function handler(
 
   await redis.hset('messages', message.id, JSON.stringify(newMessage));
 
-  console.log('parou');
   serverPusher.trigger('messages', 'new-message', newMessage);
 
-  console.log('chegou');
   res.status(200).json({ message: newMessage });
 }

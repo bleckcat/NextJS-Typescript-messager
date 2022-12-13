@@ -2,9 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from './LogoutButton';
+import { unstable_getServerSession } from 'next-auth';
 
-function Header() {
-  const session = true;
+async function Header() {
+  const session = await unstable_getServerSession();
 
   if (session) {
     return (
@@ -12,14 +13,14 @@ function Header() {
         <div className="flex space-x-2">
           <Image
             className="rounded-full mx-2 object-contain shadow-sm"
-            src="https://links.papareact.com/jne"
+            src={session.user?.image!}
             alt="Profile Picture"
             width={50}
             height={50}
           />
           <div>
-            <p className="text-blue-400">Logged in as:</p>
-            <p className="font-bold text-lg">Juan Vitor</p>
+            <p className="text-orange-400">Logged in as:</p>
+            <p className="font-bold text-lg">{session.user?.name}</p>
           </div>
         </div>
         <LogoutButton />
@@ -31,16 +32,16 @@ function Header() {
       <div className="flex flex-col items-center space-y-5">
         <div className="flex space-x-2 items-center">
           <Image
-            src="https://links.papareact.com/jne"
+            src="https://lh3.googleusercontent.com/FQHkHGS7mMWZF_DWjXPWXRI9AkoBOiey9_iE3hM6EKMj5FGVtncDKkNHKmMOAUoq3BA=w2400"
             alt="Logo"
             width={50}
             height={10}
           />
-          <p className="text-blue-400">Welcome to Meta Messenger</p>
+          <p className="text-orange-400">Welcome to Aubay Messenger</p>
         </div>
         <Link
           href="/auth/signin"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
         >
           Sign In
         </Link>

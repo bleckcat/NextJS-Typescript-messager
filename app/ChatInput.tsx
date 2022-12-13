@@ -5,15 +5,20 @@ import { v4 as uuid } from 'uuid';
 import useSWR from 'swr';
 import { Message } from '../typings';
 import fetcher from '../utils/fetchMessages';
+import { unstable_getServerSession } from 'next-auth';
 
-function ChatInput() {
+type Props = {
+  session: Awaited<ReturnType<typeof unstable_getServerSession>>;
+};
+
+function ChatInput({ session }: Props) {
   const [input, setInput] = useState<string>();
   const { data: messages, error, mutate } = useSWR('api/getMessages', fetcher);
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!input) return;
+    if (!input || !session) return;
 
     const messageToSend = input;
 
@@ -25,9 +30,9 @@ function ChatInput() {
       id,
       message: messageToSend,
       created_at: Date.now(),
-      username: 'Juan Vitor',
-      profilePic: 'https://links.papareact.com/jne',
-      email: 'jorginho@hotmail.com',
+      username: session?.user?.name!,
+      profilePic: session?.user?.image!,
+      email: session?.user?.email!,
     };
 
     const uploadMessageToUpstash = async () => {
@@ -54,14 +59,15 @@ function ChatInput() {
       <input
         type="text"
         onChange={(e) => setInput(e.target.value)}
+        disabled={!session}
         placeholder="Write down your message..."
-        className="flex-1 rounded border border-grey-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex-1 rounded border border-grey-300 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
         value={input}
       />
       <button
         type="submit"
         disabled={!input}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Send
       </button>
