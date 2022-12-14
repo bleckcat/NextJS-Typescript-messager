@@ -12,7 +12,7 @@
   <p align="center">
     And also proving that I have other capabilities
   </p>
-  <img src="public/images/Typescript.png" alt="Logo" width="200">
+  <img src="public/images/Typescript.png" alt="Logo" width="600">
 </div>
 
 <!-- TABLE OF CONTENTS -->
