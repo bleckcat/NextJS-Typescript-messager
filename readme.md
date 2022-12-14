@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/bleckcat/NextJS-Typescript-messager">
-    <img src="images/aubayLogo.png" alt="Logo" width="80" height="80">
+    <img src="public/images/aubayLogo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">This Project was made to test my TypeScript skills</h3>
@@ -12,7 +12,7 @@
   <p align="center">
     And also proving that I have other capabilities
   </p>
-  <img src="images/Typescript.png" alt="Logo" width="200">
+  <img src="public/images/Typescript.png" alt="Logo" width="200">
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -39,7 +39,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/bleckcat/NextJS-Typescript-messager/master/screenShot.png?raw=true)
+![Alt text](https://github.com/bleckcat/NextJS-Typescript-messager/blob/master/public/images/screenShot.png?raw=true)
 
 This projects aims to develop my skills with multiple new things that I would like to test or already now how to use but I want to use the latest version, a good example in that this projects uses NextJS 13.
 
